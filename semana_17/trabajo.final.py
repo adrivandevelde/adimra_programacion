@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 TOKEN= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJub21icmUiOiJhbHVtbm8ifQ.eC452_kHQbCP4wDVvN6nl5Vx8V6HhQP8D5EljApFXS8"
 URL_API_GET = "http://pad19.com:3030/productos/10" # luego estos acordate de ponerlos en un archivo aparte
