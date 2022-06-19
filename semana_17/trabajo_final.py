@@ -1,22 +1,86 @@
-import requests, json
+import requests
 
 TOKEN= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJub21icmUiOiJhbHVtbm8ifQ.eC452_kHQbCP4wDVvN6nl5Vx8V6HhQP8D5EljApFXS8"
-URL_API_GET = "http://pad19.com:3030/productos/10" # luego estos acordate de ponerlos en un archivo aparte
-URL_API_POST = "http://pad19.com:3030/pedidos/10" # luego estos acordate de ponerlos en un archivo aparte
+URL_API_GET = f"http://pad19.com:3030/productos/10?token={TOKEN}" # luego estos acordate de ponerlos en un archivo aparte
+URL_API_POST = f"http://pad19.com:3030/pedidos/10?token={TOKEN}" # luego estos acordate de ponerlos en un archivo aparte
 
-
+""" # SOLICITAR LOS DATOS DE STOCK Y MOSTRARLOS
 
 def solicitar_stock(ruta):
     proceso= requests.get(ruta)
 
     if (proceso.status_code == 200):
         return proceso.json()
+
     else:
         return False
 
+
 def mostrar_stock(datos):
-    print(datos["id"])
-    
+    print("Producto id: ", datos["productos"][0]["id"])
+    print("Descripción: ", datos["productos"][0]["nombre"])
+    print("Precio unitario: ", datos["productos"][0]["precio"])
+    print("Cantidad disponible: ", datos["productos"][0]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][1]["id"])
+    print("Descripción: ", datos["productos"][1]["nombre"])
+    print("Precio unitario: ", datos["productos"][1]["precio"])
+    print("Cantidad disponible: ", datos["productos"][1]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][2]["id"])
+    print("Descripción: ", datos["productos"][2]["nombre"])
+    print("Precio unitario: ", datos["productos"][2]["precio"])
+    print("Cantidad disponible: ", datos["productos"][2]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][2]["id"])
+    print("Descripción: ", datos["productos"][2]["nombre"])
+    print("Precio unitario: ", datos["productos"][2]["precio"])
+    print("Cantidad disponible: ", datos["productos"][2]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][3]["id"])
+    print("Descripción: ", datos["productos"][3]["nombre"])
+    print("Precio unitario: ", datos["productos"][3]["precio"])
+    print("Cantidad disponible: ", datos["productos"][3]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][4]["id"])
+    print("Descripción: ", datos["productos"][4]["nombre"])
+    print("Precio unitario: ", datos["productos"][4]["precio"])
+    print("Cantidad disponible: ", datos["productos"][4]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][5]["id"])
+    print("Descripción: ", datos["productos"][5]["nombre"])
+    print("Precio unitario: ", datos["productos"][5]["precio"])
+    print("Cantidad disponible: ", datos["productos"][5]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][6]["id"])
+    print("Descripción: ", datos["productos"][6]["nombre"])
+    print("Precio unitario: ", datos["productos"][6]["precio"])
+    print("Cantidad disponible: ", datos["productos"][6]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][8]["id"])
+    print("Descripción: ", datos["productos"][8]["nombre"])
+    print("Precio unitario: ", datos["productos"][8]["precio"])
+    print("Cantidad disponible: ", datos["productos"][8]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][9]["id"])
+    print("Descripción: ", datos["productos"][9]["nombre"])
+    print("Precio unitario: ", datos["productos"][9]["precio"])
+    print("Cantidad disponible: ", datos["productos"][9]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][10]["id"])
+    print("Descripción: ", datos["productos"][10]["nombre"])
+    print("Precio unitario: ", datos["productos"][10]["precio"])
+    print("Cantidad disponible: ", datos["productos"][10]["stock"])
+    print("\n")
+    print("Producto id: ", datos["productos"][11]["id"])
+    print("Descripción: ", datos["productos"][11]["nombre"])
+    print("Precio unitario: ", datos["productos"][11]["precio"])
+    print("Cantidad disponible: ", datos["productos"][11]["stock"])
+    print("\n")
+
+    #lista_1= [datos["productos"][0]["id"], datos["productos"][0]["nombre"], datos["productos"][0]["precio"], datos["productos"][0]["stock"]]
+    #print(lista_1)
+
 def principal():
     datos_json= solicitar_stock(URL_API_GET)
     
@@ -26,8 +90,42 @@ def principal():
         mostrar_stock(datos_json)
 
 
+if (__name__ == "__main__"):
+    principal() """
+
+# HACER EL PEDIDO
 
 
+def enviar_pedido(a, b):
+    parametros = {"id":a, "cantidad":b}
+    solicitud = requests.post(URL_API_POST, json=parametros)
+    
+    if (solicitud.status_code == 200):
+        return solicitud.json()
+    return False
 
 
+if (__name__ == "__main__"):
 
+    while True:
+        a= int(input("Ingrese el id del producto que desee comprar "))
+        b= int(input("Ingrese la cantidad que desee comprar "))
+
+        if a == 0 or b == 0:
+            print("Pedido finalizado, gracias por pasar")
+            break 
+        else:
+            proceso = enviar_pedido(a, b)
+            if (proceso == False):
+                print("Error al conectar con el servidor de logs")
+            else:
+                print("Continúe con su el registro de su pedido, de lo contrario presione '0'")
+    
+
+
+        
+
+        
+        
+
+    
