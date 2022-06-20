@@ -4,7 +4,7 @@ TOKEN= "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJub21icmUiOiJhbHVtbm8
 URL_API_GET = f"http://pad19.com:3030/productos/10?token={TOKEN}" # luego estos acordate de ponerlos en un archivo aparte
 URL_API_POST = f"http://pad19.com:3030/pedidos/10?token={TOKEN}" # luego estos acordate de ponerlos en un archivo aparte
 
-""" # SOLICITAR LOS DATOS DE STOCK Y MOSTRARLOS
+# SOLICITAR LOS DATOS DE STOCK Y MOSTRARLOS
 
 def solicitar_stock(ruta):
     proceso= requests.get(ruta)
@@ -90,9 +90,6 @@ def principal():
         mostrar_stock(datos_json)
 
 
-if (__name__ == "__main__"):
-    principal() """
-
 # HACER EL PEDIDO
 
 
@@ -105,25 +102,30 @@ def enviar_pedido(a, b):
     return False
 
 
-if (__name__ == "__main__"):
-
+def hacer_pedido():
     while True:
-        a= int(input("Ingrese el id del producto que desee comprar "))
-        b= int(input("Ingrese la cantidad que desee comprar "))
-
-        if a == 0 or b == 0:
-            print("Pedido finalizado, gracias por pasar")
-            break 
-        else:
-            proceso = enviar_pedido(a, b)
-            if (proceso == False):
-                print("Error al conectar con el servidor de logs")
-            else:
-                print("Continúe con su el registro de su pedido, de lo contrario presione '0'")
-    
-
-
+        print("Ingrese a continuación id del producto y cantidad, para finalizar el pedido presione '0' dos veces")
+        a= int(input("id del producto: "))
+        b= int(input("cantidad: "))
         
+        if ( a !=0 or b !=0 ):
+            proceso= enviar_pedido(a, b)
+            if (proceso == False):
+                print("Error al conectarse con el servidor")
+            else:
+                print(proceso["mensaje"])
+        else:
+            print("Pedido finalizado")
+            break
+            
+
+if (__name__ == "__main__"):
+    principal()
+    hacer_pedido()
+
+# pendientes: 1- acumular, 2- ver lo de los parámetros en otro archivo
+
+
 
         
         
